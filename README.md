@@ -1,13 +1,12 @@
-# Project Name
+# Aqubnb-photos
 
-> Project description
+> Photo layout and basic information of destination
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/teamTarly/aquabnb-booking
+  - https://github.com/teamTarly/aquabnb-more-places-to-stay
+  - https://github.com/teamTarly/aquabnb-reviews
 
 ## Table of Contents
 
