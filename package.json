@@ -1,17 +1,31 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "aquabnbphotos",
+  "version": "1.0.0",
+  "description": "Photo Gallery of Aquabnb Listing",
+  "author": "Genaro Salinas",
   "license": "",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
+    "build": "webpack --config webpack.config.js"
   },
   "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.13",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "underscore": "^1.11.0"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "babel-loader": "^8.2.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "jest": "^26.6.3",
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.2.0"
   }
 }
