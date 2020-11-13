@@ -24,3 +24,5 @@ coverage
 build/
 dist/
 
+dev_config.js
+
