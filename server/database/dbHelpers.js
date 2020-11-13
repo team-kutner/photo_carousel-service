@@ -10,4 +10,4 @@ const getPhotos = (id) => {
 
 module.exports = {
   getPhotos
-}
+};
