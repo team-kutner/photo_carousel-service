@@ -5,8 +5,8 @@ const getPhotos = (id) => {
     where: {
       ListingId: id
     }
-  })
-}
+  });
+};
 
 module.exports = {
   getPhotos

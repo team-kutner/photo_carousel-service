@@ -15,7 +15,7 @@ function getUrls(folder, name) {
   return urls;
 }
 
-async function createRandPhotos() {
+function createRandPhotos() {
   var randUrls = [];
   for (var i = 1; i <= 10; i++) {
     randUrls.push(getRandItem(urls));
@@ -26,7 +26,7 @@ async function createRandPhotos() {
       description: faker.commerce.productDescription(),
     });
   });
-}
+};
 
 async function createTables() {
   await Tables.Listing.sync();
