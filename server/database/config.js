@@ -3,9 +3,6 @@ const dev = require('../../dev_config.js');
 
 const sequelize = new Sequelize(dev.db_URI);
 
-
-
-
 (async () => {
   try {
     await sequelize.authenticate();
@@ -20,7 +17,9 @@ const Listing = sequelize.define('Listing', {
     type: DataTypes.STRING,
     allowNull: false
   }
-})
+}, {
+    timestamps: false
+});
 
 const Photo = sequelize.define('Photo', {
   url: {
@@ -31,13 +30,12 @@ const Photo = sequelize.define('Photo', {
     type: DataTypes.TEXT,
     defaultValue: 'Photo of Listing'
   }
-})
+}, {
+    timestamps: false
+});
 
 Listing.hasMany(Photo);
 Photo.belongsTo(Listing);
-
-Listing.sync();
-Photo.sync();
 
 module.exports = {
   Listing,

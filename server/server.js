@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyparser = require('body-parser');
 const path = require('path');
+const db = require('./database/dbHelpers.js');
 const app = express();
 const port = 8282;
 
@@ -9,8 +10,16 @@ app.use(bodyparser.urlencoded({extended: true}));
 app.use(bodyparser.json());
 
 app.get('/api/homes/:id/photos', (req, res) => {
-  res.send('request received');
-  res.end();
+  var listingId = req.body.id;
+  db.getPhotos(listingId)
+    .then(photos => {
+      res.json(photos);
+      res.end();
+    })
+    .catch(err => {
+      console.log(err);
+      res.statusCode(404).end();
+    })
 });
 
 app.listen(port, () => {
