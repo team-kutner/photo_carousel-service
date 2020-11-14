@@ -41,7 +41,8 @@ createTables()
   .then(() => {
     for (var i = 0; i < 100; i++) {
       Tables.Listing.create({
-        name: faker.commerce.productName()
+        name: faker.commerce.productName(),
+        location: faker.address.city() + ', ' + faker.address.country()
       })
         .then(listing => {
           createRandPhotos()

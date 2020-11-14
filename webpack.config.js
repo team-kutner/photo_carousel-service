@@ -7,10 +7,11 @@ module.exports = {
     path: path.resolve(__dirname, './client/dist'),
   },
   watch: true,
+  mode: 'development',
   module: {
     rules: [
       {
-        test: /\.m?jsx$/,
+        test: /\.(js|jsx|css)$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',

@@ -16,6 +16,10 @@ const Listing = sequelize.define('Listing', {
   name: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  location: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
 }, {
     timestamps: false
