@@ -6,18 +6,16 @@ const LinksCont = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   height: 30px;
 `;
 
 const Link = styled.div`
   display: inline-flex;
-  justify-content: space-around;
   align-items: center;
-  width: 55px;
   cursor: pointer;
+  margin-left: 12px;
   text-decoration: underline;
-  padding: 5px;
   border-radius: 5px;
   &:hover {
     background-color: #eee;
@@ -25,9 +23,12 @@ const Link = styled.div`
 `;
 
 const Location = styled(Link)`
+  margin: 0;
   width: auto;
-  padding-left: 0;
   color: rgb(113, 113, 113);
+  &:hover {
+    background-color: #fff;
+  }
 `;
 
 const Links = ({ listing }) => {
@@ -36,12 +37,12 @@ const Links = ({ listing }) => {
       <Location> {listing.location} </Location>
       <div>
         <Link>
-          <ion-icon name="download-outline"></ion-icon>
-          Share
+          <ion-icon name="cloud-upload-outline"></ion-icon>
+          <div style={{marginLeft:5}}>Share</div>
         </Link>
         <Link>
           <ion-icon name="heart-outline"></ion-icon>
-          Save
+          <div style={{marginLeft:5}}>Save</div>
         </Link>
       </div>
     </LinksCont>

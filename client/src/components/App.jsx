@@ -42,7 +42,7 @@ const App = () => {
     <>
       {photos.length !== 0 &&
         <Container>
-          <Header>{photos[0].Listing.name}</Header>
+          <Header>{photos[0].Listing.name} ({photos[0].ListingId})</Header>
           <Links listing={photos[0].Listing} />
           <Photos photoList={photos} />
         </Container>

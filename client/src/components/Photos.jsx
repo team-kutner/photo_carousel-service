@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components'
+import Modal from './Modal.jsx';
 
 const PhotosCont = styled.div`
+  position: relative;
   display: grid;
   column-gap: 8px;
   row-gap: 8px;
@@ -13,51 +15,88 @@ const PhotosCont = styled.div`
   grid-template-rows: 1fr 1fr;
 `;
 
-const Photo1 = styled.div`
-  grid-area: 1 / 2 / 2 / 3;
+const ImgCont = styled.div`
+  grid-area: ${props => props.location};
   justify-self: stretch;
-  background-image: url(${props => props.img || 'black'});
-  background-size: cover;
+  background-color: black;
+  overflow: hidden;
+  cursor: pointer;
 `;
 
-const Photo2 = styled.div`
-  grid-area: 1 / 3 / 2 / 4;
-  justify-self: stretch;
-  background-image: url(${props => props.img || 'red'});
-  background-size: cover;
+const Image = styled.img`
+  width: auto;
+  height: 100%;
+  transition: opacity 200ms linear;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
 `;
 
-const Photo3 = styled.div`
-  grid-area: 2 / 2 / 3 / 3;
-  justify-self: stretch;
-  background-image: url(${props => props.img || 'green'});
-  background-size: cover;
+const AllPhotosBtn = styled.button`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  line-height: 18px;
+  font-weight: 600px;
+  right: 24px;
+  bottom: 24px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid black;
+  padding: 7px 15px;
+  background-color: white;
+  transition: background-color 100ms linear;
+
+  &:hover {
+    background-color: rgb(247, 247, 247);
+  }
 `;
 
-const Photo4 = styled.div`
-  grid-area: 2 / 3 / 3 / 4;
-  justify-self: stretch;
-  background-image: url(${props => props.img || 'blue'});
-  background-size: cover;
-`;
+var getGridLoc = (index) => {
+  if (index === 0) {
+    return '2 / 2 / 3 / 3';
+  } else if (index === 1) {
+    return '1 / 2 / 2 / 3';
+  } else if (index === 2) {
+    return '1 / 3 / 2 / 4';
+  } else if (index === 3) {
+    return '1 / 1 / 3 / 2';
+  } else {
+    return '2 / 3 / 3 / 4';
+  }
+};
 
-const LargePhoto = styled.div`
-  grid-area: 1 / 1 / 3 / 2;
-  justify-self: stretch;
-  background-image: url(${props => props.img || 'orange'});
-  background-size: cover;
-`;
 
 const Photos = ({ photoList }) => {
+  const [modalView, setModalView] = useState(false);
+
+  var toggle = () => {
+    setModalView(!modalView);
+  };
 
   return (
-    <PhotosCont>
-      <Photo1 img={photoList[0].url}></Photo1>
-      <Photo2 img={photoList[1].url}></Photo2>
-      <Photo3 img={photoList[2].url}></Photo3>
-      <Photo4 img={photoList[3].url}></Photo4>
-      <LargePhoto img={photoList[4].url}></LargePhoto>
-    </PhotosCont>
+    <>
+      <PhotosCont onClick={toggle}>
+        {photoList.slice(0, 5).map((photo, i) => {
+          return (
+            <ImgCont location={getGridLoc(i)}>
+              <Image src={photo.url} alt={photo.description} />
+            </ImgCont>
+          )
+        })}
+        <AllPhotosBtn onClick={toggle}>
+          <ion-icon name='apps'></ion-icon>
+          <div style={{marginLeft: 8}}> Show All Photos </div>
+        </AllPhotosBtn>
+      </PhotosCont>
+      <Modal photoList={photoList} view={modalView} toggle={toggle}/>
+    </>
   )
 };
 
