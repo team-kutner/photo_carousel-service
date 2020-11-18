@@ -39,22 +39,28 @@ const Image = styled.img`
 
 const AllPhotosBtn = styled.button`
   position: absolute;
+  right: 24px;
+  bottom: 24px;
   display: flex;
   align-items: center;
   text-align: center;
   line-height: 18px;
   font-weight: 600px;
-  right: 24px;
-  bottom: 24px;
   cursor: pointer;
   border-radius: 8px;
   border: 1px solid black;
   padding: 7px 15px;
   background-color: white;
-  transition: background-color 100ms linear;
+  transition: transform 100ms linear;
+  outline: none;
 
   &:hover {
     background-color: rgb(247, 247, 247);
+  }
+
+  &:active {
+    transform-origin: center;
+    transform: scale(0.96);
   }
 `;
 
