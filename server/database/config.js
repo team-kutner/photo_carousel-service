@@ -3,14 +3,14 @@ const dev = require('../../dev_config.js');
 
 const sequelize = new Sequelize(dev.db_URI);
 
-(async () => {
+/* (async () => {
   try {
     await sequelize.authenticate();
     console.log('MySql has been established successfully.');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
-})();
+})(); */
 
 const Listing = sequelize.define('Listing', {
   name: {
