@@ -14,6 +14,7 @@ const PhotosCont = styled.div`
   grid-template-columns: 50% 1fr 1fr;
   grid-template-rows: 1fr 1fr;
 `;
+PhotosCont.displayName = 'PhotosCont';
 
 const ImgCont = styled.div`
   grid-area: ${props => props.location};
@@ -22,6 +23,7 @@ const ImgCont = styled.div`
   overflow: hidden;
   cursor: pointer;
 `;
+ImgCont.displayName = 'ImgCont';
 
 const Image = styled.img`
   width: auto;
@@ -63,6 +65,7 @@ const AllPhotosBtn = styled.button`
     transform: scale(0.96);
   }
 `;
+AllPhotosBtn.displayName = 'AllPhotosBtn';
 
 var getGridLoc = (index) => {
   if (index === 0) {
@@ -88,10 +91,10 @@ const Photos = ({ photoList }) => {
 
   return (
     <>
-      <PhotosCont onClick={toggle}>
+      <PhotosCont id='PhotosCont' onClick={toggle}>
         {photoList.slice(0, 5).map((photo, i) => {
           return (
-            <ImgCont location={getGridLoc(i)}>
+            <ImgCont key={i} location={getGridLoc(i)}>
               <Image src={photo.url} alt={photo.description} />
             </ImgCont>
           )

@@ -27,6 +27,7 @@ const Images = styled.div`
   margin: 0 100px;
   overflow: hidden;
 `;
+Images.displayName = 'Images';
 
 const Image = styled.img`
   display: ${props => props.display ? 'inline' : 'none'};
@@ -57,6 +58,7 @@ const NavBtns = styled.button`
     transform-origin: center;
   }
 `;
+NavBtns.displayName = 'NavBtns';
 
 const Carousel = ({ photoList, photoNum, setPhotoNum}) => {
   function navigate(e) {
@@ -79,6 +81,7 @@ const Carousel = ({ photoList, photoNum, setPhotoNum}) => {
         {photoList.map((photo, i) => {
           return (
             <Image
+              key={i}
               src={photo.url}
               alt={photo.description}
               display={i + 1 === photoNum}

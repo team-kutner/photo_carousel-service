@@ -34,7 +34,7 @@ const Location = styled(Link)`
 const Links = ({ listing }) => {
   return (
     <LinksCont>
-      <Location> {listing.location} </Location>
+      <Location>{listing.location}</Location>
       <div>
         <Link>
           <ion-icon name="cloud-upload-outline"></ion-icon>
