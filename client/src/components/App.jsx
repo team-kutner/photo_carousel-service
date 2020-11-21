@@ -28,7 +28,10 @@ const App = () => {
   let [photos, setPhotos] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/homes/80/photos')
+    var params = window.location.href.split('/');
+    console.log(window.location.href);
+    var id = params[params.length - 1] || '80';
+    axios.get(`/api/homes/${id}/photos`)
       .then(response => {
         var data = response.data;
         setPhotos(data);
