@@ -14,6 +14,7 @@ const PhotosCont = styled.div`
   grid-template-columns: 50% 1fr 1fr;
   grid-template-rows: 1fr 1fr;
 `;
+PhotosCont.displayName = 'PhotosCont';
 
 const ImgCont = styled.div`
   grid-area: ${props => props.location};
@@ -22,6 +23,7 @@ const ImgCont = styled.div`
   overflow: hidden;
   cursor: pointer;
 `;
+ImgCont.displayName = 'ImgCont';
 
 const Image = styled.img`
   width: auto;
@@ -39,24 +41,31 @@ const Image = styled.img`
 
 const AllPhotosBtn = styled.button`
   position: absolute;
+  right: 24px;
+  bottom: 24px;
   display: flex;
   align-items: center;
   text-align: center;
   line-height: 18px;
   font-weight: 600px;
-  right: 24px;
-  bottom: 24px;
   cursor: pointer;
   border-radius: 8px;
   border: 1px solid black;
   padding: 7px 15px;
   background-color: white;
-  transition: background-color 100ms linear;
+  transition: transform 100ms linear;
+  outline: none;
 
   &:hover {
     background-color: rgb(247, 247, 247);
   }
+
+  &:active {
+    transform-origin: center;
+    transform: scale(0.96);
+  }
 `;
+AllPhotosBtn.displayName = 'AllPhotosBtn';
 
 var getGridLoc = (index) => {
   if (index === 0) {
@@ -82,10 +91,10 @@ const Photos = ({ photoList }) => {
 
   return (
     <>
-      <PhotosCont onClick={toggle}>
+      <PhotosCont id='PhotosCont' onClick={toggle}>
         {photoList.slice(0, 5).map((photo, i) => {
           return (
-            <ImgCont location={getGridLoc(i)}>
+            <ImgCont key={i} location={getGridLoc(i)}>
               <Image src={photo.url} alt={photo.description} />
             </ImgCont>
           )

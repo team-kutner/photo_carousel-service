@@ -7,11 +7,11 @@ import Links from './Links.jsx';
 import Photos from './Photos.jsx';
 
 const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 `
 
 const Container = styled.section`
-  font-family: 'Roboto', Helvetica, sans-serif;
+  font-family: 'Montserrat', Helvetica, sans-serif;
   box-sizing: border-box;
   color: rgb(34, 34, 34);
   font-size: 16px;

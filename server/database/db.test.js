@@ -1,6 +1,6 @@
-const {Sequelize, DataTypes} = require('sequelize');
+/* const {Sequelize, DataTypes} = require('sequelize');
 const dev = require('../../dev_config.js');
-let sequelize, Listing, Photo;
+let sequelize, Listing, Photo; */
 
 
 /* beforeEach(async () => {
