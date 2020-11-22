@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
-import styled from 'styled-components'
+const {React} = window;
+const {ReactDOM} = window;
+const {styled} = window;
+const {useEffect, useState} = React;
 import Modal from './Modal.jsx';
 
 const PhotosCont = styled.div`

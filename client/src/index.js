@@ -1,9 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+const {React} = window;
+const {ReactDOM} = window;
 import App from './components/App.jsx';
 
-//ReactDOM.render(<App />, document.getElementById('app'));
-
-window.React = React;
-window.ReactDOM = ReactDOM;
-window.PhotosApp = App;
+ReactDOM.render(<App />, document.getElementById('photos'));

@@ -1,14 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
-import axios from 'axios';
-import styled from 'styled-components'
-import { createGlobalStyle } from 'styled-components';
+const {React} = window;
+const {ReactDOM} = window;
+const {styled} = window;
+const {useEffect, useState} = React;
 import Links from './Links.jsx';
 import Photos from './Photos.jsx';
-
-const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-`
+import axios from 'axios';
 
 const Container = styled.section`
   font-family: 'Montserrat', Helvetica, sans-serif;
@@ -29,7 +25,6 @@ const App = () => {
 
   useEffect(() => {
     var params = window.location.href.split('/');
-    console.log(window.location.href);
     var id = params[params.length - 1] || '80';
     axios.get(`/api/homes/${id}/photos`)
       .then(response => {

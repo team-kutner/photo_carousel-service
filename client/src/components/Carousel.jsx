@@ -1,6 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
-import styled, {keyframes} from 'styled-components';
+const {React} = window;
+const {ReactDOM} = window;
+const {styled} = window;
+const {useEffect, useState} = React;
+const {keyframes} = styled;
 
 const fadeIn = keyframes`
   from {
