@@ -12,12 +12,13 @@
 
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
-1. [Development](#Installing Dependencies)
+1. [Dependencies](#Dependencies)
 
 ## Usage
 
 1. Create db in mysql shell
-2. Create URI env variable *mysql://[username]:[password]@localhost:3306/[database]*
+2. Create URI env variable 
+   - *mysql://[username]:[password]@localhost:3306/[database]*
 3. npm run seed
 4. npm run build
 5. npm run start
@@ -28,7 +29,7 @@
 * MySQL
 * JS / React
 
-## Installing Dependencies
+## Dependencies
 
 From within the root directory:
 
