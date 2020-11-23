@@ -1,6 +1,6 @@
 # Aqubnb-photos
 
-> Photo layout and basic information of destination
+> Photo layout and carousel modal
 
 ## Related Projects
 
@@ -12,22 +12,27 @@
 
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
-1. [Development](#development)
+1. [Development](#Installing Dependencies)
 
 ## Usage
 
-npm run seed
-npm run start
+1. Create db in mysql shell
+2. Create URI env variable *mysql://[username]:[password]@localhost:3306/[database]*
+3. npm run seed
+4. npm run build
+5. npm run start
 
 ## Requirements
 
-## Development
+* Node / Express
+* MySQL
+* JS / React
 
-### Installing Dependencies
+## Installing Dependencies
 
 From within the root directory:
 
 ```sh
 npm install
 ```
-
+That's all folks :relaxed:
