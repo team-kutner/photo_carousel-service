@@ -69,24 +69,26 @@ const AllPhotosBtn = styled.button`
 AllPhotosBtn.displayName = 'AllPhotosBtn';
 
 var getGridLoc = (index) => {
-  if (index === 0) {
-    return '2 / 2 / 3 / 3';
-  } else if (index === 1) {
-    return '1 / 2 / 2 / 3';
-  } else if (index === 2) {
-    return '1 / 3 / 2 / 4';
-  } else if (index === 3) {
-    return '1 / 1 / 3 / 2';
-  } else {
-    return '2 / 3 / 3 / 4';
+  switch (index) {
+    case 0: return '1 / 1 / 3 / 2';
+    case 1: return '1 / 2 / 2 / 3';
+    case 2: return '1 / 3 / 2 / 4';
+    case 3: return '2 / 2 / 3 / 3';
+    case 4: return '2 / 3 / 3 / 4';
   }
 };
 
 
 const Photos = ({ photoList }) => {
   const [modalView, setModalView] = useState(false);
+  const [startPic, setStartPic] = useState(1);
 
-  var toggle = () => {
+  var toggle = (e) => {
+    if (e.target.id) {
+      setStartPic(Number(e.target.id) + 1);
+    } else {
+      setStartPic(1);
+    }
     setModalView(!modalView);
   };
 
@@ -96,7 +98,7 @@ const Photos = ({ photoList }) => {
         {photoList.slice(0, 5).map((photo, i) => {
           return (
             <ImgCont key={i} location={getGridLoc(i)}>
-              <Image src={photo.url} alt={photo.description} />
+              <Image id={i} src={photo.url} alt={photo.description} />
             </ImgCont>
           )
         })}
@@ -105,7 +107,11 @@ const Photos = ({ photoList }) => {
           <div style={{marginLeft: 8}}> Show All Photos </div>
         </AllPhotosBtn>
       </PhotosCont>
-      <Modal photoList={photoList} view={modalView} toggle={toggle}/>
+      <Modal
+        photoList={photoList}
+        view={modalView}
+        toggle={toggle}
+        startPic={startPic}/>
     </>
   )
 };

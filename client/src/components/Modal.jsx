@@ -79,8 +79,12 @@ const Link = styled.div`
   }
 `;
 
-const Modal = ({ photoList, view, toggle}) => {
+const Modal = ({ photoList, view, toggle, startPic}) => {
   const [photoNum, setPhotoNum] = useState(1);
+
+  useEffect(() => {
+    setPhotoNum(startPic);
+  }, [view]);
 
   return (
     <ModalCont view={view}>
