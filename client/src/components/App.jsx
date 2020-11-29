@@ -25,7 +25,7 @@ const App = () => {
 
   useEffect(() => {
     var params = window.location.href.split('/');
-    var id = params[params.length - 1] || '80';
+    var id = params[params.length - 1] || '10';
     axios.get(`/api/homes/${id}/photos`)
       .then(response => {
         var data = response.data;
