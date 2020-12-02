@@ -9,7 +9,7 @@ app.use(bodyparser.urlencoded({extended: true}));
 app.use(bodyparser.json());
 
 app.get('/api/homes/:id/photos', (req, res) => {
-  var listingId = req.params.id
+  var listingId = req.params.id;
   db.getPhotos(listingId)
     .then(photos => {
       res.json(photos);
@@ -20,5 +20,96 @@ app.get('/api/homes/:id/photos', (req, res) => {
       res.statusCode(404).end();
     });
 });
+
+//post
+
+
+app.post('/api/homes/:id/listings', (req, res) => {
+  let name = req.body.name;
+  let location = req.body.name;
+  return db.addListing(name, location)
+    .then(() => {
+      res.status(200);
+      res.end();
+    })
+    .catch((err) => {
+      res.send(400);
+    });
+});
+
+app.post('/api/homes/:id/photos', (req, res) => {
+  let url = req.body.url;
+  let description = req.body.description;
+  return db.addPhoto(url, description)
+    .then(() => {
+      res.status(200);
+      res.end();
+    })
+    .catch((err) => {
+      res.send(400);
+    });
+});
+
+
+//update
+
+app.put('/api/homes/:id/listings', (req, res) => {
+  let id = req.body.id;
+  let name = req.body.name;
+  let location = req.body.location;
+  return db.updateListing(id, name, location)
+    .then(() => {
+      res.status(200);
+      res.end();
+    })
+    .catch((err) => {
+      res.send(err);
+      res.send(400);
+    });
+});
+
+app.put('/api/homes/:id/photos', (req, res) => {
+  let id = req.body.id;
+  let url = req.body.url;
+  let description = req.body.description;
+  return db.updatePhoto(id, url, description)
+    .then(() => {
+      res.status(200);
+      res.end();
+    })
+    .catch((err) => {
+      // res.send(400);
+      res.send(err);
+    });
+});
+
+//delete
+
+app.delete('/api/homes/:id/listings', (req, res) => {
+  let id = req.body.id;
+  return db.deleteListing(id)
+    .then(() => {
+      res.status(200);
+      res.end();
+    })
+    .catch((err) => {
+      // res.send(400);
+      res.send(err);
+    });
+});
+
+app.delete('/api/homes/:id/photos', (req, res) => {
+  let id = req.body.id;
+  return db.deletePhoto(id)
+    .then(() => {
+      res.status(200);
+      res.end();
+    })
+    .catch((err) => {
+      // res.send(400);
+      res.send(err);
+    });
+});
+
 
 module.exports = app;

@@ -17,7 +17,7 @@
 ## Usage
 
 1. Create db in mysql shell
-2. Create URI env variable 
+2. Create URI env variable
    - *mysql://[username]:[password]@localhost:3306/[database]*
 3. npm run seed
 4. npm run build
@@ -30,6 +30,18 @@
 * JS / React
 
 ## Dependencies
+
+## CRUD API
+
+| Action               | Method | URL                     |
+| Create a new listing | POST   | /api/homes/:id/listings |
+| Create a new photo   | POST   | /api/homes/:id/photos   |
+| Retrieve photos      | GET    | /api/homes/:id/photos   |
+| Update listing       | PUT    | /api/homes/:id/listings |
+| Update photos        | PUT    | /api/homes/:id/photos   |
+| Delete listing       | delete | /api/homes/:id/listings |
+| Delete photo         | delete | /api/homes/:id/photos   |
+
 
 From within the root directory:
 
