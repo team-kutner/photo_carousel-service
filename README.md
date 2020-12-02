@@ -33,14 +33,15 @@
 
 ## CRUD API
 
-| Action               | Method | URL                     |
-| Create a new listing | POST   | /api/homes/:id/listings |
-| Create a new photo   | POST   | /api/homes/:id/photos   |
-| Retrieve photos      | GET    | /api/homes/:id/photos   |
-| Update listing       | PUT    | /api/homes/:id/listings |
-| Update photos        | PUT    | /api/homes/:id/photos   |
-| Delete listing       | delete | /api/homes/:id/listings |
-| Delete photo         | delete | /api/homes/:id/photos   |
+| Action | Method | URL |
+| -------------------- | ------ | ----------------------- |
+| Create a new listing | POST | /api/homes/:id/listings |
+| Create a new photo | POST | /api/homes/:id/photos |
+| Retrieve photos | GET | /api/homes/:id/photos |
+| Update listing | PUT | /api/homes/:id/listings |
+| Update photos | PUT | /api/homes/:id/photos |
+| Delete listing | delete | /api/homes/:id/listings |
+| Delete photo | delete | /api/homes/:id/photos |
 
 
 From within the root directory:
