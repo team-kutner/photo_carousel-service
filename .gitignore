@@ -24,3 +24,7 @@ coverage
 dist/bundle.js
 dev_config.js
 
+#csvs
+server/database/Listings.csv
+server/database/Photos.csv
+

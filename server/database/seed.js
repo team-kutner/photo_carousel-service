@@ -5,22 +5,34 @@ const Promise = require('bluebird');
 
 let fs = require('fs');
 const writeListings = fs.createWriteStream('server/database/Listings.csv');
-writeListings.write('id,name,location\n', 'utf8');
+writeListings.write('name,location\n', 'utf8');
+const writePhotos = fs.createWriteStream('server/database/Photos.csv');
+writePhotos.write('url,description,ListingId\n', 'utf8');
 
 //insert mongo at same time
+//command to insert csv into mongo
+//mongoimport --type csv -d homes -c "Listings" --headerline --drop Listings.csv
+//mongoimport --type csv -d homes -c "Photos" --headerline --drop Photos.csv
 
+//command to insert csv into postgres
+//copy "Listings"(name, location)
+// from '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Listings.csv'
+// delimiter ','
+// CSV header;
+//copy "Photos"(url, description, "ListingId")
+// from '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Photos.csv'
+// delimiter ','
+// CSV header;
 
-let writeOneHundredListings = function(writer, encoding, callback) {
-  let i = 100;
-  let id = 0;
+let writeTenMillionListings = function(writer, encoding, callback) {
+  let i = 10000000;
   let write = function() {
     let ok = true;
     do {
       i -= 1;
-      id += 1;
       const name = faker.commerce.productName();
-      const location = faker.address.city() + ', ' + faker.address.country();
-      const data = `${id},${name},${location}\n`;
+      const location = faker.address.city();
+      const data = `${name},${location}\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
@@ -34,42 +46,59 @@ let writeOneHundredListings = function(writer, encoding, callback) {
   write();
 };
 
-writeOneHundredListings(writeListings, 'utf8', () => {
+writeTenMillionListings(writeListings, 'utf8', () => {
   writeListings.end();
+  console.log('completed!!');
 });
 
-let importCSV = function() {
+let getRandItem = function (collection) {
+  var randIndex = Math.floor(Math.random() * collection.length);
+  return collection[randIndex];
+};
+let urls = [];
+let getUrls = function (folder, name) {
+  for (var i = 1; i <= 13; i++) {
+    urls.push(`https://aquabnbphotos.s3.us-east-2.amazonaws.com/${folder}/${name}${i}.jpg`)
+  }
+  return urls;
+};
+let exteriorUrls = getUrls('exteriorPhotos', 'exterior');
 
+
+let writeTenMillionPhotos = function(writer, encoding, callback) {
+  let i = 10000000;
+  let write = function() {
+    let ok = true;
+    do {
+      i -= 1;
+      let index = faker.random.number({min: 0, max: 999});
+      const url = `https://aquabnb-photos.s3-us-west-2.amazonaws.com/${index}.jpg`;
+      const description = faker.commerce.productDescription();
+      const ListingId = faker.random.number({min: 0, max: 10000000});
+      const data = `${url},"${description}",${ListingId}\n`;
+      if (i === 0) {
+        writer.write(data, encoding, callback);
+      } else {
+        ok = writer.write(data, encoding);
+      }
+    } while (i > 0 && ok);
+    if (i > 0) {
+      writer.once('drain', write);
+    }
+  };
+  write();
+};
+
+writeTenMillionPhotos(writePhotos, 'utf8', () => {
+  writePhotos.end();
+});
+let importCSV = function() {
 
 };
 
 
 //-------------------------------good code underneath-------------------------
-// function getRandItem(collection) {
-//   var randIndex = Math.floor(Math.random() * collection.length);
-//   return collection[randIndex];
-// }
 
-// function getUrls(folder, name) {
-//   let urls = [];
-//   for (var i = 1; i <= 13; i++) {
-//     urls.push(`https://aquabnbphotos.s3.us-east-2.amazonaws.com/${folder}/${name}${i}.jpg`)
-//   }
-//   return urls;
-// }
-
-// function createRandPhotos() {
-//   var randUrls = [];
-//   for (var i = 1; i <= 10; i++) {
-//     randUrls.push(getRandItem(urls));
-//   }
-//   return Promise.map(randUrls, url => {
-//     return Tables.Photo.create({
-//       url: url,
-//       description: faker.commerce.productDescription(),
-//     });
-//   });
-// };
 
 // async function createTables() {
 //   await Tables.Listing.sync();

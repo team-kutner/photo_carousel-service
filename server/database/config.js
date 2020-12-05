@@ -22,7 +22,7 @@ const Listing = sequelize.define('Listing', {
     allowNull: false
   }
 }, {
-    timestamps: false
+  timestamps: false
 });
 
 const Photo = sequelize.define('Photo', {
@@ -35,7 +35,7 @@ const Photo = sequelize.define('Photo', {
     defaultValue: 'Photo of Listing'
   }
 }, {
-    timestamps: false
+  timestamps: false
 });
 
 Listing.hasMany(Photo);
@@ -44,4 +44,4 @@ Photo.belongsTo(Listing);
 module.exports = {
   Listing,
   Photo
-}
+};
