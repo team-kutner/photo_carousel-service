@@ -9,7 +9,7 @@ writeListings.write('name,location\n', 'utf8');
 const writePhotos = fs.createWriteStream('server/database/Photos.csv');
 writePhotos.write('url,description,ListingId\n', 'utf8');
 
-//insert mongo at same time
+
 //command to insert csv into mongo
 //mongoimport --type csv -d homes -c "Listings" --headerline --drop Listings.csv
 //mongoimport --type csv -d homes -c "Photos" --headerline --drop Photos.csv
