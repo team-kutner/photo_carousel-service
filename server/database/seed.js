@@ -4,25 +4,26 @@ const Promise = require('bluebird');
 // const Collections = require('./mongoose.config.js');
 
 let fs = require('fs');
-const writeListings = fs.createWriteStream('server/database/Listings.csv');
-writeListings.write('name,location\n', 'utf8');
+const writeListings = fs.createWriteStream('server/database/ListingsMongo.csv');
+writeListings.write('id,name,location\n', 'utf8');
 const writePhotos = fs.createWriteStream('server/database/Photos.csv');
 writePhotos.write('url,description,ListingId\n', 'utf8');
 
 
 //command to insert csv into mongo
-//mongoimport --type csv -d homes -c "Listings" --headerline --drop Listings.csv
+// mongoimport --type csv -d homes -c "Listings" --headerline --drop ListingsMongo.csv
 //mongoimport --type csv -d homes -c "Photos" --headerline --drop Photos.csv
 
 //command to insert csv into postgres
-//copy "Listings"(name, location)
+// copy "Listings"(name, location)
 // from '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Listings.csv'
 // delimiter ','
 // CSV header;
-//copy "Photos"(url, description, "ListingId")
+// copy "Photos"(url, description, "ListingId")
 // from '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Photos.csv'
 // delimiter ','
 // CSV header;
+
 
 let writeTenMillionListings = function(writer, encoding, callback) {
   let i = 10000000;
@@ -51,22 +52,23 @@ writeTenMillionListings(writeListings, 'utf8', () => {
   console.log('completed!!');
 });
 
-let getRandItem = function (collection) {
-  var randIndex = Math.floor(Math.random() * collection.length);
-  return collection[randIndex];
-};
-let urls = [];
-let getUrls = function (folder, name) {
-  for (var i = 1; i <= 13; i++) {
-    urls.push(`https://aquabnbphotos.s3.us-east-2.amazonaws.com/${folder}/${name}${i}.jpg`)
-  }
-  return urls;
-};
-let exteriorUrls = getUrls('exteriorPhotos', 'exterior');
+// let getRandItem = function (collection) {
+//   var randIndex = Math.floor(Math.random() * collection.length);
+//   return collection[randIndex];
+// };
+// let urls = [];
+// let getUrls = function (folder, name) {
+//   for (var i = 1; i <= 13; i++) {
+//     urls.push(`https://aquabnbphotos.s3.us-east-2.amazonaws.com/${folder}/${name}${i}.jpg`)
+//   }
+//   return urls;
+// };
+// let exteriorUrls = getUrls('exteriorPhotos', 'exterior');
 
 
 let writeTenMillionPhotos = function(writer, encoding, callback) {
   let i = 10000000;
+  // let i = 100;
   let write = function() {
     let ok = true;
     do {
@@ -74,7 +76,7 @@ let writeTenMillionPhotos = function(writer, encoding, callback) {
       let index = faker.random.number({min: 0, max: 999});
       const url = `https://aquabnb-photos.s3-us-west-2.amazonaws.com/${index}.jpg`;
       const description = faker.commerce.productDescription();
-      const ListingId = faker.random.number({min: 0, max: 10000000});
+      const ListingId = faker.random.number({min: 1, max: 10000000});
       const data = `${url},"${description}",${ListingId}\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);
@@ -91,10 +93,9 @@ let writeTenMillionPhotos = function(writer, encoding, callback) {
 
 writeTenMillionPhotos(writePhotos, 'utf8', () => {
   writePhotos.end();
+  console.log('finished!');
 });
-let importCSV = function() {
 
-};
 
 
 //-------------------------------good code underneath-------------------------
@@ -133,7 +134,7 @@ let importCSV = function() {
 
 //--------------------------------------------------duplicate code underneath-----------------
 
-//   const Tables = require('./config.js');
+// const Tables = require('./config.js');
 // const faker = require('faker');
 // const Promise = require('bluebird');
 

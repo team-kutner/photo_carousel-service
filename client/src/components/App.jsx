@@ -33,10 +33,10 @@ const App = () => {
       })
       .catch(err => {
         console.log(err);
-      })
-    }, [])
+      });
+  }, []);
 
-    return (
+  return (
     <>
       {photos.length !== 0 &&
         <Container>
@@ -46,7 +46,7 @@ const App = () => {
         </Container>
       }
     </>
-  )
+  );
 };
 
 export default App;

@@ -28,3 +28,6 @@ dev_config.js
 server/database/Listings.csv
 server/database/Photos.csv
 
+#keys
+aquabnb.pem
+
