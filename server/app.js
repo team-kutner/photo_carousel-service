@@ -17,7 +17,8 @@ app.get('/api/homes/:id/photos', (req, res) => {
     })
     .catch(err => {
       console.log(err);
-      res.statusCode(404).end();
+      res.status(404);
+      res.end();
     });
 });
 
