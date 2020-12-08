@@ -4,8 +4,8 @@ const Promise = require('bluebird');
 // const Collections = require('./mongoose.config.js');
 
 let fs = require('fs');
-const writeListings = fs.createWriteStream('server/database/ListingsMongo.csv');
-writeListings.write('id,name,location\n', 'utf8');
+const writeListings = fs.createWriteStream('server/database/Listings.csv');
+writeListings.write('name,location\n', 'utf8');
 const writePhotos = fs.createWriteStream('server/database/Photos.csv');
 writePhotos.write('url,description,ListingId\n', 'utf8');
 
