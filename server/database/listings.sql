@@ -14,4 +14,11 @@ CREATE TABLE "Photos" (
     REFERENCES "Listings"(id)
     ON DELETE CASCADE
 );
+CREATE TABLE "Photos" (
+  id SERIAL,
+  url VARCHAR (100),
+  description VARCHAR (500),
+  "ListingId" INT NOT NULL
+);
+
 

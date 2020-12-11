@@ -30,4 +30,5 @@ server/database/Photos.csv
 
 #keys
 aquabnb.pem
+postgres.pem
 

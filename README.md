@@ -16,18 +16,24 @@
 
 ## Usage
 
-1. Create db in mysql shell
+1. Create db in postgres shell
 2. Create URI env variable
    - *mysql://[username]:[password]@localhost:3306/[database]*
-3. npm run seed
-4. npm run build
-5. npm run start
+3. npm run seed will create 2 csv files
+4. Log in to postgres shell and create photos and listings table with provided schemas
+5. copy data from csv to postgres with a copy statement 
+example. copy "Listings"(name, location)
+from '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Listings.csv'
+delimiter ','
+CSV header;
+6. npm run build
+7. npm run start
 
 ## Requirements
 
 * Node / Express
-* MySQL
-* JS / React
+* Postgres
+* JS / React 
 
 ## Dependencies
 

@@ -4,8 +4,8 @@ const Promise = require('bluebird');
 // const Collections = require('./mongoose.config.js');
 
 let fs = require('fs');
-const writeListings = fs.createWriteStream('server/database/Listings.csv');
-writeListings.write('name,location\n', 'utf8');
+// const writeListings = fs.createWriteStream('server/database/Listings.csv');
+// writeListings.write('name,location\n', 'utf8');
 const writePhotos = fs.createWriteStream('server/database/Photos.csv');
 writePhotos.write('url,description,ListingId\n', 'utf8');
 
@@ -15,6 +15,16 @@ writePhotos.write('url,description,ListingId\n', 'utf8');
 //mongoimport --type csv -d homes -c "Photos" --headerline --drop Photos.csv
 
 //command to insert csv into postgres
+// \copy "Listings"(name, location)
+// from '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Listings.csv'
+// delimiter ','
+// CSV header;
+// \COPY <table name> FROM 'location + file_name' DELIMITER ',' CSV HEADER;
+//==============
+//instancecopy
+// \COPY "Listings"(name, location) FROM '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Listings.csv' DELIMITER ','  CSV HEADER
+//=============
+// \COPY "Listings"(name, location) FROM '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Listings.csv' DELIMITER ','  CSV HEADER
 // copy "Listings"(name, location)
 // from '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Listings.csv'
 // delimiter ','
@@ -25,32 +35,32 @@ writePhotos.write('url,description,ListingId\n', 'utf8');
 // CSV header;
 
 
-let writeTenMillionListings = function(writer, encoding, callback) {
-  let i = 10000000;
-  let write = function() {
-    let ok = true;
-    do {
-      i -= 1;
-      const name = faker.commerce.productName();
-      const location = faker.address.city();
-      const data = `${name},${location}\n`;
-      if (i === 0) {
-        writer.write(data, encoding, callback);
-      } else {
-        ok = writer.write(data, encoding);
-      }
-    } while (i > 0 && ok);
-    if (i > 0) {
-      writer.once('drain', write);
-    }
-  };
-  write();
-};
+// let writeTenMillionListings = function(writer, encoding, callback) {
+//   let i = 10000000;
+//   let write = function() {
+//     let ok = true;
+//     do {
+//       i -= 1;
+//       const name = faker.commerce.productName();
+//       const location = faker.address.city();
+//       const data = `${name},${location}\n`;
+//       if (i === 0) {
+//         writer.write(data, encoding, callback);
+//       } else {
+//         ok = writer.write(data, encoding);
+//       }
+//     } while (i > 0 && ok);
+//     if (i > 0) {
+//       writer.once('drain', write);
+//     }
+//   };
+//   write();
+// };
 
-writeTenMillionListings(writeListings, 'utf8', () => {
-  writeListings.end();
-  console.log('completed!!');
-});
+// writeTenMillionListings(writeListings, 'utf8', () => {
+//   writeListings.end();
+//   console.log('completed!!');
+// });
 
 // let getRandItem = function (collection) {
 //   var randIndex = Math.floor(Math.random() * collection.length);
