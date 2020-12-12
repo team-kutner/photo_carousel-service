@@ -29,6 +29,8 @@ server/database/Listings.csv
 server/database/Photos.csv
 
 #keys
-aquabnb.pem
 postgres.pem
+aquabnb copy.pem
+aquabnb.pem
+
 
