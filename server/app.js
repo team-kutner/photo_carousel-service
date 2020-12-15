@@ -4,10 +4,9 @@ const bodyparser = require('body-parser');
 const path = require('path');
 const db = require('./database/dbHelpers.js');
 const app = express();
-const morgan = require('morgan');
 var compression = require('compression');
 app.use(compression());
-app.use(morgan('dev'));
+
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyparser.urlencoded({extended: true}));
