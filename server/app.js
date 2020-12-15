@@ -4,6 +4,8 @@ const bodyparser = require('body-parser');
 const path = require('path');
 const db = require('./database/dbHelpers.js');
 const app = express();
+const morgan = require('morgan');
+app.use(morgan('dev'));
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyparser.urlencoded({extended: true}));
@@ -23,7 +25,13 @@ app.get('/api/homes/:id/photos', (req, res) => {
     });
 });
 
+//app.get('/loaderio-37768dc1001d74ad332634e52082d358/', (req, res) => {
+  //res.sendFile(__dirname, '/loaderio-37768dc1001d74ad332634e52082d358.txt');
+  //res.end();
+//});
+
 //post
+// server/database/seed.js
 
 
 app.post('/api/homes/:id/listings', (req, res) => {

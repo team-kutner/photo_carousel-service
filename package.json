@@ -9,6 +9,7 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
+    "build-production": "webpack --config webpack.config.js",
     "start": "nodemon server/server.js",
     "seed": "node server/database/seed.js",
     "test": "jest"

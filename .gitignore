@@ -33,4 +33,7 @@ postgres.pem
 aquabnb copy.pem
 aquabnb.pem
 
+#newrelic
+newrelic.js
+
 
