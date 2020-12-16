@@ -23,12 +23,12 @@ app.use(bodyparser.json());
 
 app.get('/api/homes/:id/photos', (req, res) => {
   var listingId = req.params.id;
-  return client.get(`listing${listingId}`)
+  return client.getAsync(`listing${listingId}`)
     .then(results => {
       if (results === null) {
         db.getPhotos(listingId)
           .then(photos => {
-            client.set(`listing${listingId}`, JSON.stringify(dates));
+            client.setAsync(`listing${listingId}`, JSON.stringify(dates));
             res.json(photos);
             res.end();
           });
