@@ -18,7 +18,7 @@ app.get('/api/homes/:id/photos', (req, res) => {
   var listingId = req.params.id;
   return redis.get(`listing${listingId}`)
     .then(results => {
-      if (!results) {
+      if (results === null) {
         db.getPhotos(listingId)
           .then(photos => {
             redis.set(`listing${listingId}`, JSON.stringify(dates));
