@@ -1,6 +1,5 @@
 const newrelic = require('newrelic');
 const express = require('express');
-const Promise = require('bluebird');
 const bodyparser = require('body-parser');
 const path = require('path');
 const db = require('./database/dbHelpers.js');
@@ -8,7 +7,7 @@ const app = express();
 var compression = require('compression');
 app.use(compression());
 const redis = require('../redis.config.js');
-Promise.promisifyAll('redis');
+// Promise.promisifyAll('redis');
 
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
