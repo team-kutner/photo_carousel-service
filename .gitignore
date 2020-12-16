@@ -32,6 +32,7 @@ server/database/Photos.csv
 postgres.pem
 aquabnb copy.pem
 aquabnb.pem
+redisKey.pem
 
 #newrelic
 newrelic.js

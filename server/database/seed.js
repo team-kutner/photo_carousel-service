@@ -22,8 +22,8 @@ writePhotos.write('url,description,ListingId\n', 'utf8');
 // \COPY <table name> FROM 'location + file_name' DELIMITER ',' CSV HEADER;
 //==============
 //instancecopy
-\COPY "Listings"(name, location) FROM '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Listings.csv' DELIMITER ','  CSV HEADER
-\COPY "Photos"(url, description, "ListingId") FROM '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Photos.csv' DELIMITER ','  CSV HEADER
+// \COPY "Listings"(name, location) FROM '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Listings.csv' DELIMITER ','  CSV HEADER
+// \COPY "Photos"(url, description, "ListingId") FROM '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Photos.csv' DELIMITER ','  CSV HEADER
 //=============
 // \COPY "Listings"(name, location) FROM '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Listings.csv' DELIMITER ','  CSV HEADER
 // copy "Listings"(name, location)

@@ -6,6 +6,7 @@ const db = require('./database/dbHelpers.js');
 const app = express();
 var compression = require('compression');
 app.use(compression());
+const redis = require('../../redis.config.js');
 
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
@@ -14,10 +15,18 @@ app.use(bodyparser.json());
 
 app.get('/api/homes/:id/photos', (req, res) => {
   var listingId = req.params.id;
-  db.getPhotos(listingId)
-    .then(photos => {
-      res.json(photos);
-      res.end();
+  return redis.getAsync(`listing${listingId}`)
+    .then(results => {
+      if (!results) {
+        db.getPhotos(listingId)
+          .then(photos => {
+            redis.setAsync(`listing${listingId}`, JSON.stringify(dates));
+            res.json(photos);
+            res.end();
+          });
+      } else {
+        return JSON.parse(results);
+      }
     })
     .catch(err => {
       console.log(err);
@@ -27,8 +36,8 @@ app.get('/api/homes/:id/photos', (req, res) => {
 });
 
 //app.get('/loaderio-37768dc1001d74ad332634e52082d358/', (req, res) => {
-  //res.sendFile(__dirname, '/loaderio-37768dc1001d74ad332634e52082d358.txt');
-  //res.end();
+//res.sendFile(__dirname, '/loaderio-37768dc1001d74ad332634e52082d358.txt');
+//res.end();
 //});:
 
 //post
@@ -124,3 +133,24 @@ app.delete('/api/homes/:id/photos', (req, res) => {
 
 
 module.exports = app;
+
+
+
+// app.get('/api/homes/:id/photos', (req, res) => {
+//   var listingId = req.params.id;
+//   //check if it's in redis
+//   //if it is send data from redis
+//   //else
+//   db.getPhotos(listingId)
+//     .then(photos => {
+//       //set listingId in redis
+//       //stringify photos
+//       res.json(photos);
+//       res.end();
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(404);
+//       res.end();
+//     });
+// });
