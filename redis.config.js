@@ -5,6 +5,9 @@ client = redis.createClient({
   host: '34.213.186.178',
 });
 
+export default client;
+
+
 
 
 

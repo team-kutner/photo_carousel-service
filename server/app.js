@@ -6,8 +6,15 @@ const db = require('./database/dbHelpers.js');
 const app = express();
 var compression = require('compression');
 app.use(compression());
-const redis = require('../redis.config.js');
-// Promise.promisifyAll('redis');
+// const redis = require('../redis.config.js');
+const Promise = require('bluebird');
+let redis = Promise.promisifyAll(require('redis'));
+let client = redis.createClient({
+  port: 6379,
+  host: '34.213.186.178',
+});
+
+
 
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
@@ -16,12 +23,12 @@ app.use(bodyparser.json());
 
 app.get('/api/homes/:id/photos', (req, res) => {
   var listingId = req.params.id;
-  return redis.get(`listing${listingId}`)
+  return client.get(`listing${listingId}`)
     .then(results => {
       if (results === null) {
         db.getPhotos(listingId)
           .then(photos => {
-            redis.set(`listing${listingId}`, JSON.stringify(dates));
+            client.set(`listing${listingId}`, JSON.stringify(dates));
             res.json(photos);
             res.end();
           });
