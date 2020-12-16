@@ -6,7 +6,7 @@ const db = require('./database/dbHelpers.js');
 const app = express();
 var compression = require('compression');
 app.use(compression());
-const redis = require('../../redis.config.js');
+const redis = require('../redis.config.js');
 
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
