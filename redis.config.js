@@ -1,6 +1,5 @@
-let Promise = require('bluebird');
+
 let redis = require('redis');
-Promise.promisifyAll(redis);
 
 client = redis.createClient({
   port: 6379,
