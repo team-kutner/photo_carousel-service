@@ -16,12 +16,12 @@ app.use(bodyparser.json());
 
 app.get('/api/homes/:id/photos', (req, res) => {
   var listingId = req.params.id;
-  return redis.getAsync(`listing${listingId}`)
+  return redis.get(`listing${listingId}`)
     .then(results => {
       if (!results) {
         db.getPhotos(listingId)
           .then(photos => {
-            redis.setAsync(`listing${listingId}`, JSON.stringify(dates));
+            redis.set(`listing${listingId}`, JSON.stringify(dates));
             res.json(photos);
             res.end();
           });
