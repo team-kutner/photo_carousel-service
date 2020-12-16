@@ -22,14 +22,15 @@ writePhotos.write('url,description,ListingId\n', 'utf8');
 // \COPY <table name> FROM 'location + file_name' DELIMITER ',' CSV HEADER;
 //==============
 //instancecopy
-// \COPY "Listings"(name, location) FROM '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Listings.csv' DELIMITER ','  CSV HEADER
+\COPY "Listings"(name, location) FROM '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Listings.csv' DELIMITER ','  CSV HEADER
+\COPY "Photos"(url, description, "ListingId") FROM '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Photos.csv' DELIMITER ','  CSV HEADER
 //=============
 // \COPY "Listings"(name, location) FROM '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Listings.csv' DELIMITER ','  CSV HEADER
 // copy "Listings"(name, location)
 // from '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Listings.csv'
 // delimiter ','
 // CSV header;
-// copy "Photos"(url, description, "ListingId")
+// \copy "Photos"(url, description, "ListingId")
 // from '/Users/henryfradley/Desktop/Work/SDC_HF/Aquabnb-photos/server/database/Photos.csv'
 // delimiter ','
 // CSV header;
@@ -77,14 +78,14 @@ writePhotos.write('url,description,ListingId\n', 'utf8');
 
 
 let writeTenMillionPhotos = function(writer, encoding, callback) {
-  let i = 10000000;
+  let i = 50000000;
   // let i = 100;
   let write = function() {
     let ok = true;
     do {
       i -= 1;
       let index = faker.random.number({min: 0, max: 999});
-      const url = `https://aquabnb-photos.s3-us-west-2.amazonaws.com/${index}.jpg`;
+      const url = `https://d3w3z5xfwxkq5d.cloudfront.net/${index}.jpg`;
       const description = faker.commerce.productDescription();
       const ListingId = faker.random.number({min: 1, max: 10000000});
       const data = `${url},"${description}",${ListingId}\n`;
