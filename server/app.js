@@ -7,6 +7,7 @@ const app = express();
 var compression = require('compression');
 app.use(compression());
 const redis = require('../redis.config.js');
+Promise.promisifyAll('redis');
 
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
