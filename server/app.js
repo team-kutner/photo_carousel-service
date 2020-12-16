@@ -22,7 +22,7 @@ app.get('/api/homes/:id/photos', (req, res) => {
       if (results === null) {
         db.getPhotos(listingId)
           .then(photos => {
-            redis.setAsync(`listing${listingId}`, JSON.stringify(dates));
+            redis.setAsync(`listing${listingId}`, JSON.stringify(photos));
             res.json(photos);
             res.end();
           });
