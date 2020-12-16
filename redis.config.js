@@ -1,5 +1,5 @@
-let redis = require ('redis');
-Promise.promisifyAll(redis);
+
+Promise.promisifyAll(require('redis'));
 
 client = redis.createClient({
   port: 6379,
