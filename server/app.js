@@ -25,7 +25,6 @@ app.get('/api/homes/:id/photos', (req, res) => {
             res.end();
           });
       } else {
-        console.log(results);
         results = JSON.parse(results);
         res.json(results);
         res.end();
