@@ -9,8 +9,6 @@ app.use(compression());
 const redis = require('../redis.config.js');
 
 
-
-
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(bodyparser.json());
@@ -20,7 +18,7 @@ app.get('/api/homes/:id/photos', (req, res) => {
   return redis.getAsync(`listing${listingId}`)
     .then(results => {
       if (results === null) {
-        db.getPhotos(listingId)
+        return db.getPhotos(listingId)
           .then(photos => {
             redis.setAsync(`listing${listingId}`, JSON.stringify(photos));
             res.json(photos);
