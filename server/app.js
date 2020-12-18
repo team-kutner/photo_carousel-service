@@ -37,10 +37,10 @@ app.get('/api/homes/:id/photos', (req, res) => {
     });
 });
 
-//app.get('/loaderio-37768dc1001d74ad332634e52082d358/', (req, res) => {
-//res.sendFile(__dirname, '/loaderio-37768dc1001d74ad332634e52082d358.txt');
-//res.end();
-//});:
+app.get('/loaderio-f8616ae2413ee2fa7cc54833f8e1dc3a/', (req, res) => {
+  res.sendFile(__dirname, '/loaderio-f8616ae2413ee2fa7cc54833f8e1dc3a.txt');
+  res.end();
+});
 
 //post
 // server/database/seed.js
